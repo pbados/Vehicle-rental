@@ -9,7 +9,7 @@ import java.util.List;
 public class Producer {
 
     @Id
-    @Column(name="producer_id")
+    @Column(name="producerId")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long producerId;
 

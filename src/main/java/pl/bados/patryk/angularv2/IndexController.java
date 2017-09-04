@@ -61,7 +61,7 @@ public class IndexController {
         b.setVehicleId(1L);
         borrowRepository.save(ba.fromBorrowDtoToBorrow(b));
 
-        return "Wypozyczono!";
+        return "Borrowed!";
     }
 
     @RequestMapping(value="/addCar", method = RequestMethod.POST)

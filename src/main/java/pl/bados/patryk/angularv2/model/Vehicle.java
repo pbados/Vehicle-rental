@@ -9,19 +9,19 @@ import java.util.List;
 public abstract class Vehicle {
 
     @Id
-    @Column(name = "vehicle_id")
+    @Column(name = "vehicleId")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long vehicleId;
 
-    @OneToMany(mappedBy="vehicle_id")
+    @OneToMany(mappedBy="vehicle")
     private List<Borrow> borrows;
 
-    public Long getId() {
-        return id;
+    public Long getVehicleId() {
+        return vehicleId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setVehicleId(Long vehicleId) {
+        this.vehicleId = vehicleId;
     }
 
     public List<Borrow> getBorrows() {

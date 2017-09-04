@@ -23,17 +23,16 @@ public class BorrowAssembler {
         BorrowDto borrowDto = new BorrowDto();
         borrowDto.setBorrowerId(borrow.getBorrower().getBorrowerId());
         borrowDto.setLd(borrow.getBorrowDate());
-        borrowDto.setVehicleId(borrow.getVehicle_id().getId());
+        borrowDto.setVehicleId(borrow.getVehicle().getVehicleId());
 
         return borrowDto;
     }
 
     public Borrow fromBorrowDtoToBorrow(BorrowDto borrowDto){
         Borrow borrow = new Borrow();
-        Borrower b1 = borrowerRepository.getOne(1L);
-        borrow.setBorrower(b1);
+        borrow.setBorrower(borrowerRepository.getOne(borrowDto.getBorrowerId()));
         borrow.setBorrowDate(borrowDto.getLd());
-        borrow.setVehicle_id(vehicleRepository.findOne(borrowDto.getVehicleId()));
+        borrow.setVehicle(vehicleRepository.findOne(borrowDto.getVehicleId()));
 
         return borrow;
     }

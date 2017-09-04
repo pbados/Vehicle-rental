@@ -10,9 +10,9 @@ import java.time.LocalDate;
 public class Borrow {
 
     @Id
-    @Column(name="borrow_id")
+    @Column(name="borrowId")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long borrow_id; //borrowId
+    private Long borrowId;
 
     @OneToOne(cascade = CascadeType.ALL)
     public Borrower borrower;
@@ -21,34 +21,36 @@ public class Borrow {
     public LocalDate borrowDate;
 
     @ManyToOne
-    @JoinColumn(name="vehicle_id")
+    @JoinColumn(name="vehicleId")
     @JsonIgnore
-    public Vehicle vehicle_id; //dsa
+    public Vehicle vehicle;
 
-    public Borrow(Borrower borrower, LocalDate borrowDate, Vehicle vehicle_id) {
-        this.borrower = borrower;
-        this.borrowDate = borrowDate;
-        this.vehicle_id = vehicle_id;
+    public Borrow() {
     }
-
-    public Borrow(){}
 
     @Override
     public String toString() {
         return "Borrow{" +
-                "borrow_id=" + borrow_id +
+                "borrowId=" + borrowId +
                 ", borrower=" + borrower +
                 ", borrowDate=" + borrowDate +
-                ", vehicle_id=" + vehicle_id +
+                ", vehicle=" + vehicle +
                 '}';
     }
 
-    public Long getBorrow_id() {
-        return borrow_id;
+    public Borrow(Borrower borrower, LocalDate borrowDate, Vehicle vehicle) {
+        this.borrower = borrower;
+        this.borrowDate = borrowDate;
+        this.vehicle = vehicle;
     }
 
-    public void setBorrow_id(Long borrow_id) {
-        this.borrow_id = borrow_id;
+    public Long getBorrowId() {
+
+        return borrowId;
+    }
+
+    public void setBorrowId(Long borrowId) {
+        this.borrowId = borrowId;
     }
 
     public Borrower getBorrower() {
@@ -67,11 +69,11 @@ public class Borrow {
         this.borrowDate = borrowDate;
     }
 
-    public Vehicle getVehicle_id() {
-        return vehicle_id;
+    public Vehicle getVehicle() {
+        return vehicle;
     }
 
-    public void setVehicle_id(Vehicle vehicle_id) {
-        this.vehicle_id = vehicle_id;
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 }
