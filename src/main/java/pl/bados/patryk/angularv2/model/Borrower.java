@@ -31,7 +31,7 @@ public class Borrower {
     @Override
     public String toString() {
         return "Borrower{" +
-                "borrowerId=" + borrowerId +
+                "borrower=" + borrowerId +
                 ", borrowerName='" + borrowerName + '\'' +
                 '}';
     }

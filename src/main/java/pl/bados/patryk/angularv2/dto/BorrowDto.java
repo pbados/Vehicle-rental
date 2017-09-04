@@ -16,7 +16,7 @@ public class BorrowDto {
         return "BorrowDto{" +
                 "ld=" + ld +
                 ", vehicleId=" + vehicleId +
-                ", borrowerId=" + borrowerId +
+                ", borrower=" + borrowerId +
                 '}';
     }
 

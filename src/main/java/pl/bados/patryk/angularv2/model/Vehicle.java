@@ -13,10 +13,10 @@ public abstract class Vehicle {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(mappedBy="borrow_id")
+    @OneToMany(mappedBy="vehicle_id")
     private List<Borrow> borrows;
 
-    /*public Long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -30,5 +30,5 @@ public abstract class Vehicle {
 
     public void setBorrows(List<Borrow> borrows) {
         this.borrows = borrows;
-    }*/
+    }
 }

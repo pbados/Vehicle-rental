@@ -17,6 +17,8 @@ import java.util.List;
 @RestController
 public class IndexController {
 
+    @Autowired
+    BorrowAssembler ba;
     private VehicleRepository vehicleRepository;
     private BikeRepository bikeRepository;
     private BorrowerRepository borrowerRepository;
@@ -50,24 +52,14 @@ public class IndexController {
         return vehicleRepository.findAll();
     }
 
+
     @RequestMapping(value="/borrow", method = RequestMethod.POST)
     public String borrow(){
-        /*BorrowDto b = new BorrowDto();
-        b.setBorrowerId(4L);
+        BorrowDto b = new BorrowDto();
+        b.setBorrowerId(1L);
         b.setLd(LocalDate.now());
-        b.setVehicleId(vehicleRepository.getOne(7L));
-
-        BorrowAssembler ba = new BorrowAssembler();
-        borrowRepository.save(ba.getBorrow(b));*/
-
-        /* DZIALA, ALE BEZPOSREDNIO NA BORROW, A NIE NA BORROWDTO
-        Borrow b = new Borrow();
-
-        b.setBorrower(borrowerRepository.getOne(3L));
-        b.setBorrowDate(LocalDate.now());
-        b.setVehicleId(vehicleRepository.getOne(3L));
-
-        borrowRepository.save(b);*/
+        b.setVehicleId(1L);
+        borrowRepository.save(ba.fromBorrowDtoToBorrow(b));
 
         return "Wypozyczono!";
     }
@@ -86,11 +78,6 @@ public class IndexController {
         return "Dodano samochod!";
     }
 
-    /*@RequestMapping(value="/details/{vehicleId}", method = RequestMethod.GET)
-    public Vehicle details(@PathVariable Long vehicleId){
-        Vehicle vehicle = vehicleRepository.findOne(vehicleId);
-        return vehicle;
-    }*/
 
     @RequestMapping(value="/addBike/{vehicleName}", method = RequestMethod.POST)
     public String addBike(@PathVariable String vehicleName){
@@ -99,7 +86,7 @@ public class IndexController {
 
         //dodrawne
         BikeAssembler bikeAssembler = new BikeAssembler();
-        //vehicleRepository.save(bikeAssembler.fromBikeDtoToBike(bikeDto));
+        vehicleRepository.save(bikeAssembler.fromBikeDtoToBike(bikeDto));
 
         return "Dodano rower!";
     }
