@@ -18,10 +18,13 @@ import java.util.List;
 public class IndexController {
 
     @Autowired
-    BorrowAssembler ba;
+    BorrowAssembler borrowAssembler;
 
     @Autowired
-    CarAssembler ca;
+    CarAssembler carAssembler;
+
+    @Autowired
+    BikeAssembler bikeAssembler;
 
     private VehicleRepository vehicleRepository;
     private BikeRepository bikeRepository;
@@ -63,7 +66,7 @@ public class IndexController {
         b.setBorrowerId(1L);
         b.setLd(LocalDate.now());
         b.setVehicleId(1L);
-        borrowRepository.save(ba.fromBorrowDtoToBorrow(b));
+        borrowRepository.save(borrowAssembler.fromBorrowDtoToBorrow(b));
 
         return "Borrowed!";
     }
@@ -75,21 +78,17 @@ public class IndexController {
         cd.setProductionDate(LocalDate.of(2011, 11, 11));
         cd.setColor(Color.BLACK);
         cd.setProducerName(1L);
-        vehicleRepository.save(ca.fromCarDtoToCar(cd));
+        vehicleRepository.save(carAssembler.fromCarDtoToCar(cd));
 
-        return "Added!";
+        return "Car dded!";
     }
 
-//assembler do wstrzykniecia
     @RequestMapping(value="/addBike/{vehicleName}", method = RequestMethod.POST)
     public String addBike(@PathVariable String vehicleName){
         BikeDto bikeDto = new BikeDto();
         bikeDto.setVehicleName(vehicleName);
-
-        //dodrawne
-        BikeAssembler bikeAssembler = new BikeAssembler();
         vehicleRepository.save(bikeAssembler.fromBikeDtoToBike(bikeDto));
 
-        return "Dodano rower!";
+        return "Bike added!";
     }
 }

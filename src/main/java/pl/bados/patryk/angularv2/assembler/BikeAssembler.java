@@ -1,8 +1,10 @@
 package pl.bados.patryk.angularv2.assembler;
 
+import org.springframework.stereotype.Component;
 import pl.bados.patryk.angularv2.dto.BikeDto;
 import pl.bados.patryk.angularv2.model.Bike;
 
+@Component
 public class BikeAssembler {
 
     public Bike fromBikeDtoToBike(BikeDto bikeDto){
