@@ -4,11 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pl.bados.patryk.angularv2.dto.BorrowDto;
 import pl.bados.patryk.angularv2.model.Borrow;
-import pl.bados.patryk.angularv2.model.Borrower;
 import pl.bados.patryk.angularv2.repository.BorrowerRepository;
 import pl.bados.patryk.angularv2.repository.VehicleRepository;
-
-import java.util.List;
 
 @Component
 public class BorrowAssembler {

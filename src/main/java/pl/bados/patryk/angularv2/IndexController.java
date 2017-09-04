@@ -19,6 +19,10 @@ public class IndexController {
 
     @Autowired
     BorrowAssembler ba;
+
+    @Autowired
+    CarAssembler ca;
+
     private VehicleRepository vehicleRepository;
     private BikeRepository bikeRepository;
     private BorrowerRepository borrowerRepository;
@@ -70,15 +74,13 @@ public class IndexController {
         cd.setVehicleName("c5");
         cd.setProductionDate(LocalDate.of(2011, 11, 11));
         cd.setColor(Color.BLACK);
-        //cd.setProducerName(producerRepository.getOne(1L));
+        cd.setProducerName(1L);
+        vehicleRepository.save(ca.fromCarDtoToCar(cd));
 
-        CarAssembler cA = new CarAssembler();
-        vehicleRepository.save(cA.fromCarDtoToCar(cd));
-
-        return "Dodano samochod!";
+        return "Added!";
     }
 
-
+//assembler do wstrzykniecia
     @RequestMapping(value="/addBike/{vehicleName}", method = RequestMethod.POST)
     public String addBike(@PathVariable String vehicleName){
         BikeDto bikeDto = new BikeDto();
