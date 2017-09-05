@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 @Component
 public class BorrowServiceImpl implements BorrowService {
-    
+
     private BorrowRepository borrowRepository;
 
     @Autowired
