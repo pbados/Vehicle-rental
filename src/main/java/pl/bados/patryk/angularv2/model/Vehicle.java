@@ -5,6 +5,7 @@ import java.util.List;
 
 @Entity
 //map super class
+//@MappedSuperclass
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Vehicle {
 
