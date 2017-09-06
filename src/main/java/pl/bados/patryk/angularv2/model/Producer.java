@@ -9,14 +9,13 @@ import java.util.List;
 public class Producer {
 
     @Id
-    @Column(name="producerId")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long producerId;
 
     @Column
     private String producerName;
 
-    @OneToMany(mappedBy="producerName")
+    @OneToMany(mappedBy="producer")
     private List<Car> cars;
 
     public Producer(List<Car> cars) {

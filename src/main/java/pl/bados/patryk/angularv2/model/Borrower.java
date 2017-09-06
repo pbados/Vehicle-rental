@@ -6,7 +6,6 @@ import javax.persistence.*;
 public class Borrower {
 
     @Id
-    @Column
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long borrowerId;
 

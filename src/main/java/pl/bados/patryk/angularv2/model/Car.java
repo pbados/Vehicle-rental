@@ -9,13 +9,14 @@ import java.time.LocalDate;
 public class Car extends Vehicle{
 
     @ManyToOne
-    @JoinColumn(name="producerName")
-    private Producer producerName;
+    @JoinColumn(name="producer_id")
+    private Producer producer;
 
     @Column
     @Enumerated(EnumType.STRING)
     private Color color;
 
+    //dodac do vehicle, usuac z bike
     @Column
     private String vehicleName;
 
@@ -26,21 +27,30 @@ public class Car extends Vehicle{
     public Car() {
     }
 
-    public Car(Producer producerName, Color color, String vehicleName, LocalDate productionDate) {
-        this.producerName = producerName;
-        this.color = color;
-        this.vehicleName = vehicleName;
-        this.productionDate = productionDate;
-    }
-
     @Override
     public String toString() {
         return "Car{" +
-                "producerName=" + producerName +
+                "producer=" + producer +
                 ", color=" + color +
                 ", vehicleName='" + vehicleName + '\'' +
-                ", productionDate='" + productionDate + '\'' +
+                ", productionDate=" + productionDate +
                 '}';
+    }
+
+    public Producer getProducer() {
+        return producer;
+    }
+
+    public void setProducer(Producer producer) {
+        this.producer = producer;
+    }
+
+    public Car(Producer producer, Color color, String vehicleName, LocalDate productionDate) {
+
+        this.producer = producer;
+        this.color = color;
+        this.vehicleName = vehicleName;
+        this.productionDate = productionDate;
     }
 
     public Color getColor() {
@@ -60,13 +70,6 @@ public class Car extends Vehicle{
         this.vehicleName = vehicleName;
     }
 
-    public Producer getProducerName() {
-        return producerName;
-    }
-
-    public void setProducerName(Producer producerName) {
-        this.producerName = producerName;
-    }
 
     public LocalDate getProductionDate() {
         return productionDate;

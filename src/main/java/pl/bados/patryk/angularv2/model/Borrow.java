@@ -10,11 +10,11 @@ import java.time.LocalDate;
 public class Borrow {
 
     @Id
-    @Column(name="borrowId")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long borrowId;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="borrower_id")
     public Borrower borrower;
 
     @Convert(converter = LocalDateAttributeConverter.class)
@@ -28,22 +28,6 @@ public class Borrow {
     public Borrow() {
     }
 
-    @Override
-    public String toString() {
-        return "Borrow{" +
-                "borrowId=" + borrowId +
-                ", borrower=" + borrower +
-                ", borrowDate=" + borrowDate +
-                ", vehicle=" + vehicle +
-                '}';
-    }
-
-    public Borrow(Borrower borrower, LocalDate borrowDate, Vehicle vehicle) {
-        this.borrower = borrower;
-        this.borrowDate = borrowDate;
-        this.vehicle = vehicle;
-    }
-
     public Long getBorrowId() {
 
         return borrowId;
@@ -53,12 +37,29 @@ public class Borrow {
         this.borrowId = borrowId;
     }
 
+    @Override
+    public String toString() {
+        return "Borrow{" +
+                "borrowId=" + borrowId +
+                ", borrowerId=" + borrower +
+                ", borrowDate=" + borrowDate +
+                ", vehicle=" + vehicle +
+                '}';
+    }
+
     public Borrower getBorrower() {
         return borrower;
     }
 
     public void setBorrower(Borrower borrower) {
         this.borrower = borrower;
+    }
+
+    public Borrow(Borrower borrowerId, LocalDate borrowDate, Vehicle vehicle) {
+
+        this.borrower = borrowerId;
+        this.borrowDate = borrowDate;
+        this.vehicle = vehicle;
     }
 
     public LocalDate getBorrowDate() {
