@@ -1,24 +1,21 @@
 package pl.bados.patryk.angularv2.dto;
 
 import pl.bados.patryk.angularv2.model.Color;
-import pl.bados.patryk.angularv2.model.Producer;
 
 import java.time.LocalDate;
 
 public class CarDto {
 
-    private Long vehicleId;
     private String vehicleName;
     private Color color;
     private LocalDate productionDate;
-    private Long producerName;
+    private Long producer;
 
-    public CarDto(Long vehicleId, String vehicleName, Color color, LocalDate localDate, Long producerName) {
-        this.vehicleId = vehicleId;
+    public CarDto(String vehicleName, Color color, LocalDate localDate, Long producer) {
         this.vehicleName = vehicleName;
         this.color = color;
         this.productionDate = localDate;
-        this.producerName = producerName;
+        this.producer = producer;
     }
 
     public CarDto() {
@@ -27,20 +24,11 @@ public class CarDto {
     @Override
     public String toString() {
         return "CarDto{" +
-                "vehicleId=" + vehicleId +
                 ", vehicleName='" + vehicleName + '\'' +
                 ", color=" + color +
                 ", localDate=" + productionDate +
-                ", producerName='" + producerName + '\'' +
+                ", producer='" + producer + '\'' +
                 '}';
-    }
-
-    public Long getVehicleId() {
-        return vehicleId;
-    }
-
-    public void setVehicleId(Long vehicleId) {
-        this.vehicleId = vehicleId;
     }
 
     public String getVehicleName() {
@@ -68,10 +56,10 @@ public class CarDto {
     }
 
     public Long getProducerName() {
-        return producerName;
+        return producer;
     }
 
     public void setProducerName(Long producerName) {
-        this.producerName = producerName;
+        this.producer = producerName;
     }
 }
