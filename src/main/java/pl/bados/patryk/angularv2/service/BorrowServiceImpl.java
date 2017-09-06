@@ -21,8 +21,8 @@ public class BorrowServiceImpl implements BorrowService {
     }
 
     @Override
-    public BorrowDto addBorrow(Long vehicleId, LocalDate date, Long borrowerId) {
-        BorrowDto borrowDto = new BorrowDto(date, vehicleId, borrowerId);
+    public BorrowDto addBorrow(Long vehicleId, LocalDate borrowDate, Long borrowerId) {
+        BorrowDto borrowDto = new BorrowDto(borrowDate, vehicleId, borrowerId);
 
         return borrowDto;
     }
