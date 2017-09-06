@@ -4,28 +4,29 @@ import java.time.LocalDate;
 
 public class BorrowDto {
 
-    private LocalDate ld;
+    private LocalDate borrowDate;
     private Long vehicleId;
     private Long borrowerId;
 
     public BorrowDto() {
     }
 
+
     @Override
     public String toString() {
         return "BorrowDto{" +
-                "ld=" + ld +
+                "borrowDate=" + borrowDate +
                 ", vehicleId=" + vehicleId +
-                ", borrower=" + borrowerId +
+                ", borrowerId=" + borrowerId +
                 '}';
     }
 
-    public LocalDate getLd() {
-        return ld;
+    public LocalDate getBorrowDate() {
+        return borrowDate;
     }
 
-    public void setLd(LocalDate ld) {
-        this.ld = ld;
+    public void setBorrowDate(LocalDate borrowDate) {
+        this.borrowDate = borrowDate;
     }
 
     public Long getVehicleId() {
@@ -44,9 +45,9 @@ public class BorrowDto {
         this.borrowerId = borrowerId;
     }
 
-    public BorrowDto(LocalDate ld, Long vehicleId, Long borrowerId) {
+    public BorrowDto(LocalDate borrowDate, Long vehicleId, Long borrowerId) {
 
-        this.ld = ld;
+        this.borrowDate = borrowDate;
         this.vehicleId = vehicleId;
         this.borrowerId = borrowerId;
     }
