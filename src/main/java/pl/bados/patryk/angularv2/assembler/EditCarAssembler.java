@@ -12,22 +12,22 @@ public class EditCarAssembler {
     @Autowired
     ProducerRepository producerRepository;
 
-    public CarDto formCarToEditCarDto(Car car){
-        CarDto carDto = new CarDto();
-        carDto.setVehicleId(car.getVehicleId());
-        carDto.setColor(car.getColor());
-        carDto.setProducerName(car.getProducerName().getId());
-        carDto.setProductionDate(car.getProductionDate());
-        carDto.setVehicleName(car.getVehicleName());
+    public EditCarDto formCarToEditCarDto(Car car){
+        EditCarDto editCarDto = new EditCarDto();
+        editCarDto.setVehicleId(car.getVehicleId());
+        editCarDto.setColor(car.getColor());
+        editCarDto.setProducerName(car.getProducer().getId());
+        editCarDto.setProductionDate(car.getProductionDate());
+        editCarDto.setVehicleName(car.getVehicleName());
 
-        return carDto;
+        return editCarDto;
     }
 
     public Car fromEditCarDtoToCar(EditCarDto editCarDto){
         Car car = new Car();
         car.setVehicleId(editCarDto.getVehicleId());
         car.setColor(editCarDto.getColor());
-        car.setProducerName(producerRepository.getOne(editCarDto.getProducerName()));
+        car.setProducer(producerRepository.getOne(editCarDto.getProducerName()));
         car.setProductionDate(editCarDto.getProductionDate());
         car.setVehicleName(editCarDto.getVehicleName());
 

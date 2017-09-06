@@ -15,7 +15,7 @@ public class CarAssembler {
     public CarDto formCarToCarDto(Car car){
         CarDto carDto = new CarDto();
         carDto.setColor(car.getColor());
-        carDto.setProducerName(car.getProducerName().getId());
+        carDto.setProducerName(car.getProducer().getId());
         carDto.setProductionDate(car.getProductionDate());
         carDto.setVehicleName(car.getVehicleName());
 
@@ -25,7 +25,7 @@ public class CarAssembler {
     public Car fromCarDtoToCar(CarDto carDto){
         Car car = new Car();
         car.setColor(carDto.getColor());
-        car.setProducerName(producerRepository.getOne(carDto.getProducerName()));
+        car.setProducer(producerRepository.getOne(carDto.getProducerName()));
         car.setProductionDate(carDto.getProductionDate());
         car.setVehicleName(carDto.getVehicleName());
 
