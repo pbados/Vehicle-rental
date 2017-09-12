@@ -1,9 +1,15 @@
 package pl.bados.patryk.angularv2.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jdk.nashorn.internal.objects.annotations.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 import pl.bados.patryk.angularv2.LocalDateAttributeConverter;
+import pl.bados.patryk.angularv2.dto.ProducerDto;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Set;
 
 @Entity
 public class Car extends Vehicle{
@@ -21,20 +27,11 @@ public class Car extends Vehicle{
     private String vehicleName;
 
     @Column
-    @Convert(converter = LocalDateAttributeConverter.class)
+    @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate productionDate;
 
     public Car() {
-    }
-
-    @Override
-    public String toString() {
-        return "Car{" +
-                "producer=" + producer +
-                ", color=" + color +
-                ", vehicleName='" + vehicleName + '\'' +
-                ", productionDate=" + productionDate +
-                '}';
     }
 
     public Producer getProducer() {
@@ -69,7 +66,6 @@ public class Car extends Vehicle{
     public void setVehicleName(String vehicleName) {
         this.vehicleName = vehicleName;
     }
-
 
     public LocalDate getProductionDate() {
         return productionDate;

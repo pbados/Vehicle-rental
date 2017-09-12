@@ -2,6 +2,7 @@ package pl.bados.patryk.angularv2.service;
 
 import pl.bados.patryk.angularv2.dto.CarDto;
 import pl.bados.patryk.angularv2.dto.EditCarDto;
+import pl.bados.patryk.angularv2.model.Car;
 import pl.bados.patryk.angularv2.model.Color;
 
 import java.time.LocalDate;
@@ -13,4 +14,5 @@ public interface CarService {
     void saveEditedCar(EditCarDto editCarDto);
     EditCarDto editCar(Long vehicleId, String vehicleName, Color color, LocalDate productionDate, Long producer);
 
+    CarDto findCar(Long vehicleId);
 }

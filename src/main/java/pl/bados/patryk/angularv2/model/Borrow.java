@@ -1,9 +1,16 @@
 package pl.bados.patryk.angularv2.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.format.annotation.DateTimeFormat;
 import pl.bados.patryk.angularv2.LocalDateAttributeConverter;
+import pl.bados.patryk.angularv2.dto.BikeDto;
+import pl.bados.patryk.angularv2.dto.BorrowerDto;
+import pl.bados.patryk.angularv2.dto.CarDto;
+import pl.bados.patryk.angularv2.dto.VehicleDto;
 
 import javax.persistence.*;
+import java.rmi.activation.UnknownObjectException;
 import java.time.LocalDate;
 
 @Entity
@@ -17,7 +24,7 @@ public class Borrow {
     @JoinColumn(name="borrower_id")
     public Borrower borrower;
 
-    @Convert(converter = LocalDateAttributeConverter.class)
+    @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
     public LocalDate borrowDate;
 
     @ManyToOne

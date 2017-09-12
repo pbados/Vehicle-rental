@@ -1,9 +1,13 @@
 package pl.bados.patryk.angularv2.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import pl.bados.patryk.angularv2.dto.CarDto;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 public class Producer {
@@ -23,14 +27,6 @@ public class Producer {
     }
 
     public Producer() {
-    }
-
-    @Override
-    public String toString() {
-        return "Producer{" +
-                "id=" + producerId +
-                ", cars=" + cars +
-                '}';
     }
 
     public Long getId() {
@@ -57,4 +53,5 @@ public class Producer {
     public void setProducerName(String producerName) {
         this.producerName = producerName;
     }
+
 }

@@ -27,14 +27,6 @@ public class Borrower {
     public Borrower() {
     }
 
-    @Override
-    public String toString() {
-        return "Borrower{" +
-                "borrower=" + borrowerId +
-                ", borrowerName='" + borrowerName + '\'' +
-                '}';
-    }
-
     public Long getBorrowerId() {
         return borrowerId;
     }

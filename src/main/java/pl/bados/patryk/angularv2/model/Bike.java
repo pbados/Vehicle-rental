@@ -6,8 +6,8 @@ import javax.persistence.Entity;
 @Entity
 public class Bike extends Vehicle{
 
-    @Column
-    private String vehicleName;
+    @Column(unique = true)
+    String vehicleName;
 
     public String getVehicleName() {
         return vehicleName;
@@ -17,10 +17,10 @@ public class Bike extends Vehicle{
         this.vehicleName = vehicleName;
     }
 
-    public Bike() {
-    }
-
     public Bike(String vehicleName) {
         this.vehicleName = vehicleName;
+    }
+
+    public Bike() {
     }
 }

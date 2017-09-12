@@ -2,13 +2,16 @@ package pl.bados.patryk.angularv2.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import pl.bados.patryk.angularv2.assembler.BorrowAssembler;
 import pl.bados.patryk.angularv2.dto.BorrowDto;
 import pl.bados.patryk.angularv2.repository.*;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 
-@Component
+@Service
+@Transactional
 public class BorrowServiceImpl implements BorrowService {
 
     private BorrowRepository borrowRepository;
@@ -21,14 +24,7 @@ public class BorrowServiceImpl implements BorrowService {
     }
 
     @Override
-    public BorrowDto addBorrow(Long vehicleId, LocalDate borrowDate, Long borrowerId) {
-        BorrowDto borrowDto = new BorrowDto(borrowDate, vehicleId, borrowerId);
-
-        return borrowDto;
-    }
-
-    @Override
-    public void saveBorrow(BorrowDto borrowDto) {
+    public void addBorrow(BorrowDto borrowDto) {
         borrowRepository.save(borrowAssembler.fromBorrowDtoToBorrow(borrowDto));
     }
 }

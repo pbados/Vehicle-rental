@@ -12,17 +12,6 @@ public class EditCarDto {
     private LocalDate productionDate;
     private Long producerName;
 
-    @Override
-    public String toString() {
-        return "EditCarDto{" +
-                "vehicleId=" + vehicleId +
-                ", vehicleName='" + vehicleName + '\'' +
-                ", color=" + color +
-                ", productionDate=" + productionDate +
-                ", producerName=" + producerName +
-                '}';
-    }
-
     public Long getVehicleId() {
         return vehicleId;
     }

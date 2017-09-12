@@ -1,7 +1,12 @@
 package pl.bados.patryk.angularv2.model;
 
+import pl.bados.patryk.angularv2.dto.BorrowDto;
+
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 //map super class
@@ -31,5 +36,8 @@ public abstract class Vehicle {
 
     public void setBorrows(List<Borrow> borrows) {
         this.borrows = borrows;
+    }
+
+    public Vehicle() {
     }
 }

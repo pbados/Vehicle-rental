@@ -1,6 +1,6 @@
 package pl.bados.patryk.angularv2.dto;
 
-public class BikeDto {
+public class BikeDto extends VehicleDto{
 
     private String vehicleName;
 
@@ -9,13 +9,6 @@ public class BikeDto {
     }
 
     public BikeDto(){}
-
-    @Override
-    public String toString() {
-        return "BikeDto{" +
-                "vehicleName='" + vehicleName + '\'' +
-                '}';
-    }
 
     public String getVehicleName() {
         return vehicleName;

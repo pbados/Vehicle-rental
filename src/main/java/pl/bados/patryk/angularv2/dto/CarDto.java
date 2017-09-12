@@ -1,13 +1,17 @@
 package pl.bados.patryk.angularv2.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import pl.bados.patryk.angularv2.model.Color;
+import pl.bados.patryk.angularv2.model.Producer;
 
 import java.time.LocalDate;
 
-public class CarDto {
+public class CarDto extends VehicleDto{
 
+    private Long id;
     private String vehicleName;
     private Color color;
+    @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
     private LocalDate productionDate;
     private Long producer;
 
@@ -21,14 +25,20 @@ public class CarDto {
     public CarDto() {
     }
 
-    @Override
-    public String toString() {
-        return "CarDto{" +
-                ", vehicleName='" + vehicleName + '\'' +
-                ", color=" + color +
-                ", localDate=" + productionDate +
-                ", producer='" + producer + '\'' +
-                '}';
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getProducer() {
+        return producer;
+    }
+
+    public void setProducer(Long producer) {
+        this.producer = producer;
     }
 
     public String getVehicleName() {
@@ -55,11 +65,5 @@ public class CarDto {
         this.productionDate = localDate;
     }
 
-    public Long getProducerName() {
-        return producer;
-    }
 
-    public void setProducerName(Long producerName) {
-        this.producer = producerName;
-    }
 }

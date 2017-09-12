@@ -1,19 +1,12 @@
 package pl.bados.patryk.angularv2;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
-import pl.bados.patryk.angularv2.assembler.BikeAssembler;
-import pl.bados.patryk.angularv2.assembler.BorrowAssembler;
-import pl.bados.patryk.angularv2.assembler.CarAssembler;
-import pl.bados.patryk.angularv2.assembler.EditCarAssembler;
-import pl.bados.patryk.angularv2.dto.BikeDto;
-import pl.bados.patryk.angularv2.dto.BorrowDto;
-import pl.bados.patryk.angularv2.dto.CarDto;
-import pl.bados.patryk.angularv2.dto.EditCarDto;
-import pl.bados.patryk.angularv2.model.*;
-import pl.bados.patryk.angularv2.repository.*;
+import pl.bados.patryk.angularv2.dto.*;
+import pl.bados.patryk.angularv2.repository.VehicleRepository;
 import pl.bados.patryk.angularv2.service.BorrowService;
-import pl.bados.patryk.angularv2.service.BorrowServiceImpl;
+import pl.bados.patryk.angularv2.service.VehicleService;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -21,105 +14,62 @@ import java.util.List;
 @RestController
 public class IndexController {
 
-    @Autowired
-    BorrowAssembler borrowAssembler;
+    private final VehicleService vehicleService;
+    private final BorrowService borrowService;
+    private final VehicleRepository vehicleRepository;
 
     @Autowired
-    CarAssembler carAssembler;
-
-    @Autowired
-    BikeAssembler bikeAssembler;
-
-    @Autowired
-    EditCarAssembler editCarAssembler;
-
-    private VehicleRepository vehicleRepository;
-    private BikeRepository bikeRepository;
-    private BorrowerRepository borrowerRepository;
-    private BorrowRepository borrowRepository;
-    private ProducerRepository producerRepository;
-
-    @Autowired
-    public IndexController(VehicleRepository vehicleRepository, BikeRepository bikeRepository, BorrowerRepository borrowerRepository, BorrowRepository borrowRepository, ProducerRepository producerRepository) {
-
+    public IndexController(VehicleService vehicleService, BorrowService borrowService, VehicleRepository vehicleRepository) {
+        this.vehicleService = vehicleService;
+        this.borrowService = borrowService;
         this.vehicleRepository = vehicleRepository;
-        this.bikeRepository = bikeRepository;
-        this.borrowRepository = borrowRepository;
-        this.borrowerRepository = borrowerRepository;
-        this.producerRepository = producerRepository;
     }
 
-    @RequestMapping(value="/details/{vehicleId}", method = RequestMethod.GET)
-    public Vehicle details(@PathVariable Long vehicleId){
-        Vehicle vehicle = vehicleRepository.findOne(vehicleId);
-        return vehicle;
+    @RequestMapping(value = "/details/{id}", method = RequestMethod.GET)
+    public VehicleDto details(@PathVariable("id") Long id){
+        return vehicleService.findVehicle(id);
     }
 
-    @RequestMapping(value="/delete/{vehicleId}", method = RequestMethod.DELETE)
-    public void deleteVehicle(@PathVariable Long vehicleId){
-        vehicleRepository.delete(vehicleId);
+    @RequestMapping(value="/addBike/{name}", method = RequestMethod.POST)
+    public void addBike(@PathVariable("name") String name){
+        vehicleService.createBike(name);
     }
 
-    @RequestMapping(value="/showAll", method = RequestMethod.GET)
-    public List<Vehicle> showAll(){
+    @RequestMapping(value = "/addCar", method = RequestMethod.POST)
+    public void addCar(@RequestBody CarDto carDto) {
+        vehicleService.createCar(carDto);
+    }
 
-        return vehicleRepository.findAll();
+    @RequestMapping(value = "/editCar", method = RequestMethod.PUT)
+    public void editCar(@RequestBody EditCarDto editcarDto) {
+        vehicleService.editCar(editcarDto);
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable("id") Long id) {
+        vehicleService.deleteVehicle(id);
     }
 
     @RequestMapping(value="/borrow", method = RequestMethod.POST)
-    public String borrow(){
-        BorrowDto b = new BorrowDto();
-        b.setBorrowerId(2L);
-        b.setLd(LocalDate.now());
-        b.setVehicleId(2L);
-        borrowRepository.save(borrowAssembler.fromBorrowDtoToBorrow(b));
-
-        return "Borrowed!";
+    public BorrowDto borrow(@RequestBody BorrowDto borrowDto){
+        borrowService.addBorrow(borrowDto);
+        return borrowDto;
     }
 
-    /*@RequestMapping(value="/borrow", method = RequestMethod.POST)
-    public String borrow(){
-        BorrowService borrowService = new BorrowServiceImpl();
-
-        BorrowDto borrowDto = borrowService.addBorrow(2L, LocalDate.now(), 2L);
-
-        borrowService.saveBorrow(borrowDto);
-
-        return "Borrowed!";
-    }*/
-
-    @RequestMapping(value="/addCar", method = RequestMethod.POST)
-    public String addCar(){
-        CarDto cd = new CarDto();
-        cd.setVehicleName("c5");
-        cd.setProductionDate(LocalDate.of(2011, 11, 11));
-        cd.setColor(Color.BLACK);
-        cd.setProducerName(1L);
-        vehicleRepository.save(carAssembler.fromCarDtoToCar(cd));
-
-        return "Car added!";
+    @RequestMapping(value = "/showAll", method = RequestMethod.GET)
+    public List<VehicleDto> showAll() {
+        return vehicleService.findAll();
     }
 
-    @RequestMapping(value="/addBike/{vehicleName}", method = RequestMethod.POST)
-    public String addBike(@PathVariable String vehicleName){
-        BikeDto bikeDto = new BikeDto();
-        bikeDto.setVehicleName(vehicleName);
-        vehicleRepository.save(bikeAssembler.fromBikeDtoToBike(bikeDto));
-
-        return "Bike added!";
+    @RequestMapping(value= "/showAllQuery", method = RequestMethod.GET)
+    public List<Object> showAllQuery(){
+        return vehicleRepository.vehicles();
     }
 
-    @RequestMapping(value="/editCar", method = RequestMethod.PUT)
-    public String editCar(){
-        EditCarDto editCarDto = new EditCarDto();
-        editCarDto.setColor(Color.RED);
-        editCarDto.setProducerName(2L);
-        editCarDto.setProductionDate(LocalDate.now());
-        editCarDto.setVehicleName("b99");
-        editCarDto.setVehicleId(6L);
-        vehicleRepository.save(editCarAssembler.fromEditCarDtoToCar(editCarDto));
 
-        return "Bike updated!";
-
+    @RequestMapping(value = "/show/{date}", method = RequestMethod.GET)
+    public List<VehicleDto> show(@PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date){
+        return vehicleService.getVehiclesByBorrowDate(date);
     }
+
 }

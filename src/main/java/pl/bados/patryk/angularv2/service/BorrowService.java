@@ -6,6 +6,5 @@ import java.time.LocalDate;
 
 public interface BorrowService {
 
-    BorrowDto addBorrow(Long vehicleId, LocalDate borrowDate, Long borrowerId);
-    void saveBorrow(BorrowDto borrowDto);
+    void addBorrow(BorrowDto borrowDto);
 }

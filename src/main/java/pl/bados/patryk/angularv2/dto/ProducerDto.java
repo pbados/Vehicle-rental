@@ -1,20 +1,17 @@
 package pl.bados.patryk.angularv2.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import pl.bados.patryk.angularv2.model.Car;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ProducerDto {
-    private String producerName;
-    private List<Car> cars;
 
-    @Override
-    public String toString() {
-        return "ProducerDto{" +
-                "producerName='" + producerName + '\'' +
-                ", cars=" + cars +
-                '}';
-    }
+private String producerName;
+    private List<Car> cars;
 
     public ProducerDto() {
     }
