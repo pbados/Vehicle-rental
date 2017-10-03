@@ -1,0 +1,29 @@
+<body>
+<table>
+    <tr>
+        <td>Vehicle id</td>
+        <td><input type="text" ng-model="id" disabled></td>
+    </tr>
+    <tr>
+        <td>Vehicle name</td>
+        <td><input type="text" ng-model="vehicleName" required></td>
+    </tr>
+    <tr>
+        <td>Color</td>
+        <td><input type="text" ng-model="color" required></td>
+        <!--<td><select ng-model="color"><option value={{data.id}} ng-repeat="data in jsondata">{{data.borrowerName}}</option></select></td>-->
+    </tr>
+    <tr>
+        <td>Production date</td>
+        <td><input type="text" ng-model="productionDate" required></td>
+    </tr>
+    <tr>
+        <td>Producer</td>
+        <td><input type="text" ng-model="producer" required></td>
+    </tr>
+</table>
+<input type="submit" value="Edit" ng-model="data.id" ng-click="redirectEdit()"/>
+<form action="/index.html">
+    <input type="submit" value="Powrot" />
+</form>
+</body>

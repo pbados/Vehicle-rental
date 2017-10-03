@@ -11,6 +11,7 @@ public class ProducerAssembler {
         ProducerDto producerDto = new ProducerDto();
         producerDto.setProducerName(producer.getProducerName());
         producerDto.setCars(producer.getCars());
+        producerDto.setProducerId(producer.getId());
 
         return producerDto;
     }
@@ -19,6 +20,7 @@ public class ProducerAssembler {
         Producer producer = new Producer();
         producer.setProducerName(producerDto.getProducerName());
         producer.setCars(producerDto.getCars());
+        producer.setId(producerDto.getProducerId());
 
         return producer;
     }

@@ -34,6 +34,13 @@ public class Car extends Vehicle{
     public Car() {
     }
 
+    @Transient
+    private final String type = "Car";
+
+    public String getType() {
+        return type;
+    }
+
     public Producer getProducer() {
         return producer;
     }

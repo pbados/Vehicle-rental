@@ -13,16 +13,31 @@ public class CarDto extends VehicleDto{
     private Color color;
     @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
     private LocalDate productionDate;
-    private Long producer;
+    private String producer;
+    private Long producerId;
+    private final String type = "Car";
 
-    public CarDto(String vehicleName, Color color, LocalDate localDate, Long producer) {
+    public CarDto(String vehicleName, Color color, LocalDate localDate, String producer, Long vehicleId, String type) {
         this.vehicleName = vehicleName;
         this.color = color;
         this.productionDate = localDate;
         this.producer = producer;
+        this.id = vehicleId;
     }
 
+    public CarDto(String vehicleName, Color color, LocalDate localDate, Long producerId, String type) {
+        this.vehicleName = vehicleName;
+        this.color = color;
+        this.productionDate = localDate;
+        this.producerId = producerId;
+    }
+
+
     public CarDto() {
+    }
+
+    public String getType() {
+        return type;
     }
 
     public Long getId() {
@@ -33,11 +48,12 @@ public class CarDto extends VehicleDto{
         this.id = id;
     }
 
-    public Long getProducer() {
+    @Override
+    public String getProducer() {
         return producer;
     }
 
-    public void setProducer(Long producer) {
+    public void setProducer(String producer) {
         this.producer = producer;
     }
 
@@ -65,5 +81,11 @@ public class CarDto extends VehicleDto{
         this.productionDate = localDate;
     }
 
+    public Long getProducerId() {
+        return producerId;
+    }
 
+    public void setProducerId(Long producerId) {
+        this.producerId = producerId;
+    }
 }

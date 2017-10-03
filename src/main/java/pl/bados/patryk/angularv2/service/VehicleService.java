@@ -16,4 +16,5 @@ public interface VehicleService {
     void deleteVehicle(Long id);
     List<VehicleDto> findAll();
     List<VehicleDto> getVehiclesByBorrowDate(LocalDate date);
+
 }

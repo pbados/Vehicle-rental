@@ -7,6 +7,8 @@ import pl.bados.patryk.angularv2.model.Borrow;
 import pl.bados.patryk.angularv2.repository.BorrowerRepository;
 import pl.bados.patryk.angularv2.repository.VehicleRepository;
 
+import java.time.LocalDate;
+
 @Component
 public class BorrowAssembler {
 
@@ -36,4 +38,5 @@ public class BorrowAssembler {
 
     public BorrowAssembler() {
     }
+
 }

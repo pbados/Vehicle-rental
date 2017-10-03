@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface ProducerService {
 
-    ProducerDto addProducer(String producerName, List<Car> cars);
+    ProducerDto addProducer(String producerName, List<Car> cars, Long producerId);
     void saveProducer(ProducerDto producerDto);
+    List<ProducerDto> findAll();
 }

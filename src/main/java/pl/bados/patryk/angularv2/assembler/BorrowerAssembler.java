@@ -9,6 +9,7 @@ public class BorrowerAssembler {
 
     public Borrower fromBorrowerDtoToBorrower(BorrowerDto borrowerDto){
         Borrower borrower = new Borrower();
+        borrower.setBorrowerId(borrowerDto.getId());
         borrower.setBorrowerName(borrowerDto.getBorrowerName());
 
         return borrower;
@@ -16,6 +17,7 @@ public class BorrowerAssembler {
 
     public BorrowerDto fromBorrowerToBorrowerDto(Borrower borrower){
         BorrowerDto borrowerDto = new BorrowerDto();
+        borrowerDto.setId(borrower.getBorrowerId());
         borrowerDto.setBorrowerName(borrower.getBorrowerName());
 
         return borrowerDto;

@@ -10,7 +10,7 @@ import java.rmi.activation.UnknownObjectException;
 import java.time.LocalDate;
 
 public class BorrowDto {
-
+    //borrowdate ze stringa na localdate <-> string
     @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
     private LocalDate borrowDate;
     private Long vehicleId;

@@ -16,7 +16,7 @@ public class CarAssembler {
     public VehicleDto fromCarToVehicleDto(Car car){
         VehicleDto vehicleDto = new VehicleDto();
         vehicleDto.setColor(car.getColor());
-        vehicleDto.setProducer(car.getProducer().getId());
+        vehicleDto.setProducer(car.getProducer().getProducerName());
         vehicleDto.setProductionDate(car.getProductionDate());
         vehicleDto.setVehicleName(car.getVehicleName());
         vehicleDto.setBorrowsDto(car.getBorrows());
@@ -24,8 +24,14 @@ public class CarAssembler {
         return vehicleDto;
     }
 
-    public CarDto fromCarToCarDto(Car car){
-        CarDto carDto = new CarDto(car.getVehicleName(), car.getColor(), car.getProductionDate(), car.getProducer().getId());
+    public CarDto fromCarToCarDtoWithoutId(Car car){
+        CarDto carDto = new CarDto(car.getVehicleName(), car.getColor(), car.getProductionDate(), car.getProducer().getId(), car.getType());
+        carDto.setBorrowsDto(car.getBorrows());
+        return carDto;
+    }
+
+    public CarDto fromCarToCarDtoWithId(Car car){
+        CarDto carDto = new CarDto(car.getVehicleName(), car.getColor(), car.getProductionDate(), car.getProducer().getProducerName(), car.getVehicleId(), car.getType());
         carDto.setBorrowsDto(car.getBorrows());
         return carDto;
     }
@@ -33,7 +39,18 @@ public class CarAssembler {
     public Car fromCarDtoToCar(CarDto carDto){
         Car car = new Car();
         car.setColor(carDto.getColor());
-        car.setProducer(producerRepository.getOne(carDto.getProducer()));
+        car.setVehicleId(carDto.getId());
+        car.setProducer(producerRepository.getOne(carDto.getProducerId()));
+        car.setProductionDate(carDto.getProductionDate());
+        car.setVehicleName(carDto.getVehicleName());
+
+        return car;
+    }
+
+    public Car fromCarDtoToCarWithoutId(CarDto carDto){
+        Car car = new Car();
+        car.setColor(carDto.getColor());
+        car.setProducer(producerRepository.getOne(carDto.getProducerId()));
         car.setProductionDate(carDto.getProductionDate());
         car.setVehicleName(carDto.getVehicleName());
 

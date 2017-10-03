@@ -1,0 +1,44 @@
+<html>
+<head>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+    <script type="text/javascript" src="carCtrl.js"></script>
+    <link rel="stylesheet" href="styles.css" type="text/css">
+</head>
+<body>
+<h2><center>Dodaj nowy pojazd</center></h2>
+<form name="add" ng-app="myApp" ng-controller="carCtrl">
+<table>
+    <tr>
+        <td>Nazwa pojazdu</td>
+        <td><input type="text" ng-model="vehicleName" required></td>
+    </tr>
+    <tr>
+        <td>Producent</td>
+        <!--<td><input type="text" ng-model="producerId"></td>-->
+        <td><select ng-model="producerId" required>
+            <option value="">Wybierz producenta</option>
+            <option value={{data.producerId}} ng-repeat="data in producers">{{data.producerName}}</option>
+        </select></td>
+    </tr>
+    <tr>
+        <td>Kolor</td>
+        <td><select ng-model="color" required>
+            <option value="">Wybierz kolor</option>
+            <option value={{color}} ng-repeat="color in colors">{{color}}</option>
+        </select></td>
+    </tr>
+    <tr>
+        <td>Data produkcji</td>
+        <td><input type="text" ng-model="productionDate" required></td>
+    </tr>
+</table>
+<button type="submit" ng-click="insertcar()" ng-disabled="add.$invalid">Dodaj samochod</button>
+</form>
+
+
+</form>
+<form action="/index.html">
+    <input type="submit" value="Powrot" />
+</form>
+</body>
+</html>

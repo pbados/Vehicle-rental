@@ -20,7 +20,7 @@ public class VehicleDto {
     private Color color;
     @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
     private LocalDate productionDate;
-    private Long producer;
+    private String producer;
 
     public VehicleDto() {
     }
@@ -50,15 +50,15 @@ public class VehicleDto {
         this.productionDate = productionDate;
     }
 
-    public Long getProducer() {
+    public String getProducer() {
         return producer;
     }
 
-    public void setProducer(Long producer) {
+    public void setProducer(String producer) {
         this.producer = producer;
     }
 
-    public VehicleDto(String vehicleName, Color color, LocalDate productionDate, Long producer) {
+    public VehicleDto(String vehicleName, Color color, LocalDate productionDate, String producer) {
 
         this.vehicleName = vehicleName;
         this.color = color;
@@ -71,6 +71,10 @@ public class VehicleDto {
     @JsonProperty("isBorrowed")
     @Transient
     private Boolean isBorrowed;
+
+    @JsonProperty("isGenerallyBorrowed")
+    @Transient
+    private Boolean isGenerallyBorrowed;
 
     @JsonProperty("borrower")
     @Transient
@@ -108,11 +112,17 @@ public class VehicleDto {
         if (borrow.isPresent()) {
             this.isBorrowed = true;
             this.borrowerDto = borrow.get().getBorrowerDto();
+            this.isGenerallyBorrowed = true;
             return true;
         }
         this.isBorrowed = false;
 
         return false;
+    }
+
+    @JsonIgnore
+    public void setIfVehicleIsGenerallyBorrowed(){
+
     }
 
 }

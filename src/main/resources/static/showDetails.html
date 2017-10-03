@@ -1,0 +1,54 @@
+<head>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+    <script type="text/javascript" src="detailsCtrl.js"></script>
+    <!--<script type="text/javascript" src="app.js"></script>-->
+    <link rel="stylesheet" href="styles.css" type="text/css">
+</head>
+<body>
+<h2>Szczegoly pojazdu</h2>
+<form name="myForm" ng-app="myApp" ng-controller="detailsCtrl">
+        <table>
+            <tr>
+                <td>Id</td>
+                <td>{{jsondata.id}}</td>
+            </tr>
+            <tr>
+                <td>Typ</td>
+                <td>{{jsondata.type}}</td>
+            </tr>
+            <tr>
+                <td>Nazwa</td>
+                <td>{{jsondata.vehicleName}}</td>
+            </tr>
+            <tr>
+                <td>Kolor</td>
+                <td>{{jsondata.color}}</td>
+            </tr>
+            <tr>
+                <td>Data produkcji</td>
+                <td>{{jsondata.productionDate}}</td>
+            </tr>
+            <tr>
+                <td>Producent</td>
+                <td>{{jsondata.producer}}</td>
+            </tr>
+            <tr>
+                <td>Borrowed</td>
+                <td>{{jsondata.isBorrowed}}</td>
+            </tr>
+            <tr>
+                <td>Borrower name</td>
+                <td>{{jsondata.borrower.borrowerName}}</td>
+            </tr>
+        </table>
+</form>
+</body>
+<form>
+    <input type="submit" value="Borrow" />
+</form>
+<form>
+    <input type="submit" value="Submit" />
+</form>
+<form action="/index.html">
+    <input type="submit" value="Back" />
+</form>

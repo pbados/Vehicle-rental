@@ -16,10 +16,11 @@ private String producerName;
     public ProducerDto() {
     }
 
-    public ProducerDto(String producerName, List<Car> cars) {
+    public ProducerDto(String producerName, List<Car> cars, Long producerId) {
 
         this.producerName = producerName;
         this.cars = cars;
+        this.producerId = producerId;
     }
 
     public String getProducerName() {
@@ -37,5 +38,15 @@ private String producerName;
 
     public void setCars(List<Car> cars) {
         this.cars = cars;
+    }
+
+    public Long producerId;
+
+    public Long getProducerId() {
+        return producerId;
+    }
+
+    public void setProducerId(Long producerId) {
+        this.producerId = producerId;
     }
 }

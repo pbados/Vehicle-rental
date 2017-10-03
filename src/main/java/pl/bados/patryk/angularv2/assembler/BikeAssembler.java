@@ -12,6 +12,7 @@ public class BikeAssembler {
         Bike bike = new Bike();
         bike.setVehicleName(bikeDto.getVehicleName());
 
+
         return bike;
     }
 
@@ -26,6 +27,7 @@ public class BikeAssembler {
         BikeDto bikeDto = new BikeDto();
         bikeDto.setVehicleName(bike.getVehicleName());
         bikeDto.setBorrowsDto(bike.getBorrows());
+        bikeDto.setId(bike.getVehicleId());
 
         return bikeDto;
     }

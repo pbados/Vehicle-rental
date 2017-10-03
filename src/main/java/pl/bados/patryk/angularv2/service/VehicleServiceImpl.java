@@ -32,24 +32,21 @@ public class VehicleServiceImpl implements VehicleService{
     private final CarAssembler carAssembler;
     private final EditCarAssembler editCarAssembler;
     private final BikeAssembler bikeAssembler;
-    private final BorrowAssembler borrowAssembler;
-    private final BorrowRepository borrowRepository;
+
 
     @Autowired
-    public VehicleServiceImpl(VehicleRepository vehicleRepository, CarAssembler carAssembler, BikeAssembler bikeAssembler, EditCarAssembler editCarAssembler, BorrowRepository borrowRepository, BorrowAssembler borrowAssembler) {
+    public VehicleServiceImpl(VehicleRepository vehicleRepository, CarAssembler carAssembler, BikeAssembler bikeAssembler, EditCarAssembler editCarAssembler) {
         this.vehicleRepository = vehicleRepository;
         this.carAssembler = carAssembler;
         this.bikeAssembler = bikeAssembler;
         this.editCarAssembler = editCarAssembler;
-        this.borrowRepository = borrowRepository;
-        this.borrowAssembler = borrowAssembler;
     }
 
     @Override
     public VehicleDto findVehicle(Long id) {
         Vehicle vehicle = vehicleRepository.findOne(id);
         if(vehicle instanceof Car){
-            return carAssembler.fromCarToCarDto((Car) vehicle);
+            return carAssembler.fromCarToCarDtoWithoutId((Car) vehicle);
         }else if(vehicle instanceof Bike){
             return bikeAssembler.fromBikeToBikeDto((Bike) vehicle);
         }
@@ -83,7 +80,7 @@ public class VehicleServiceImpl implements VehicleService{
     public List<VehicleDto> findAll() {
         return vehicleRepository.findAll().stream().map(vehicle ->{
             if(vehicle instanceof Car){
-                return carAssembler.fromCarToCarDto((Car) vehicle);
+                return carAssembler.fromCarToCarDtoWithId((Car) vehicle);
             }
             else if(vehicle instanceof Bike){
                 return bikeAssembler.fromBikeToBikeDto((Bike) vehicle);
