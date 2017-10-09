@@ -29,7 +29,6 @@
             <th>Production date</th>
             <th>Producer</th>
             <th>Borrowed for this date</th>
-            <!--<th>Is generally borrowed?</th>-->
             <th>Borrower name</th>
         </tr>
         <tr ng-repeat="data in jsondata">
@@ -40,7 +39,6 @@
             <td>{{data.productionDate}}</td>
             <td>{{data.producer}}</td>
             <td>{{data.isBorrowed}}</td>
-            <!--<td>{{data.isGenerallyBorrowed}}</td>-->
             <td>{{data.borrower.borrowerName}}</td>
             <td><input type="radio" value={{data.id}} name="group" ng-model="data.id" ng-change="setId(data.id)"></td>
         </tr>

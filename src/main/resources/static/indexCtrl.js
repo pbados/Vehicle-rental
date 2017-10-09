@@ -17,17 +17,22 @@ var currentdate = date.yyyymmdd();
 myApp.controller('indexCtrl', function($scope, $http, $rootScope, $window){
     // $scope.id = {};
 
-    $rootScop
-
     $http.get('http://localhost:8080/show/'+currentdate)
         .then(function (response){
             $scope.jsondata = response.data;
         });
 
+    $scope.changeDate = function(){
+        $http.get('http://localhost:8080/show/'+$scope.kalendarz)
+            .then(function (response){
+                $scope.jsondata = response.data;
+            });
+    };
+
     $scope.setId = function(id) {
         $scope.id = id;
         console.log($scope.id);
-        $http.get('http://localhost:8080/show/'+currentdate)
+        $http.get('http://localhost:8080/show/'+$scope.kalendarz)
             .then(function (response){
                 $scope.jsondata = response.data;
             });
