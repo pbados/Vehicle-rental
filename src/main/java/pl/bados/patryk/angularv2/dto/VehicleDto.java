@@ -9,7 +9,6 @@ import pl.bados.patryk.angularv2.model.Color;
 
 import javax.persistence.Transient;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -112,17 +111,11 @@ public class VehicleDto {
         if (borrow.isPresent()) {
             this.isBorrowed = true;
             this.borrowerDto = borrow.get().getBorrowerDto();
-            this.isGenerallyBorrowed = true;
             return true;
         }
         this.isBorrowed = false;
-
         return false;
     }
 
-    @JsonIgnore
-    public void setIfVehicleIsGenerallyBorrowed(){
-
-    }
 
 }

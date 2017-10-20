@@ -46,7 +46,7 @@ public class VehicleServiceImpl implements VehicleService{
     public VehicleDto findVehicle(Long id) {
         Vehicle vehicle = vehicleRepository.findOne(id);
         if(vehicle instanceof Car){
-            return carAssembler.fromCarToCarDtoWithoutId((Car) vehicle);
+            return carAssembler.fromCarToCarDtoWithId((Car) vehicle);
         }else if(vehicle instanceof Bike){
             return bikeAssembler.fromBikeToBikeDto((Bike) vehicle);
         }
@@ -61,6 +61,7 @@ public class VehicleServiceImpl implements VehicleService{
 
     @Override
     public void createCar(CarDto carDto) {
+
         vehicleRepository.save(carAssembler.fromCarDtoToCar(carDto));
     }
 

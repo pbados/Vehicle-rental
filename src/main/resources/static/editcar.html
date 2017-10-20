@@ -1,29 +1,43 @@
-<body>
-<table>
+<head>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+    <script type="text/javascript" src="editCarCtrl.js"></script>
+    <link rel="stylesheet" href="styles.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+</head>
+<form ng-app="myApp" ng-controller="editCarCtrl">
+    <h1>Edytuj samochod</h1>
+    <hr>
+<table class="table table-striped">
     <tr>
         <td>Vehicle id</td>
-        <td><input type="text" ng-model="id" disabled></td>
+        <td><input type="text" ng-model="vehicleId" value={{jsondata.id}} required></td>
     </tr>
     <tr>
         <td>Vehicle name</td>
-        <td><input type="text" ng-model="vehicleName" required></td>
+        <td><input type="text" ng-model="vehicleName"></td>
     </tr>
     <tr>
         <td>Color</td>
-        <td><input type="text" ng-model="color" required></td>
-        <!--<td><select ng-model="color"><option value={{data.id}} ng-repeat="data in jsondata">{{data.borrowerName}}</option></select></td>-->
+        <td><select ng-model="color" data-ng-disabled="jsondata.type === 'Bike'" required>
+            <option value="">SELECT COLOR</option>
+            <option value={{color}} ng-repeat="color in colors">{{color}}</option>
+        </select></td>
     </tr>
     <tr>
         <td>Production date</td>
-        <td><input type="text" ng-model="productionDate" required></td>
+        <td><input type="text" ng-model="productionDate" data-ng-disabled="jsondata.type === 'Bike'"></td>
     </tr>
     <tr>
         <td>Producer</td>
-        <td><input type="text" ng-model="producer" required></td>
+        <td><input type="text" ng-model="producerName" data-ng-disabled="jsondata.type === 'Bike'"></td>
+        <!--<td><select ng-model="producerId" required>-->
+            <!--<option value={{data.producerName}}>{{data.producerName}}</option>-->
+            <!--<option value={{data.producerId}} ng-repeat="data in allborrowers">{{data.producerName}}</option>-->
+            <!--</select></td>-->
     </tr>
 </table>
-<input type="submit" value="Edit" ng-model="data.id" ng-click="redirectEdit()"/>
-<form action="/index.html">
-    <input type="submit" value="Powrot" />
+    <button type="submit" ng-click="insertedit()" class="btn btn-primary">Edit</button>
 </form>
-</body>
+<form action="/index.html">
+    <input type="submit" value="Powrot" class="btn btn-primary"/>
+</form>

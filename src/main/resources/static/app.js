@@ -1,27 +1,19 @@
-var myApp = angular.module('myApp', []);
-//
-// myApp.controller('indexCtrl', function($scope, $http, $rootScope){
-//     $http.get('http://localhost:8080/show/2017-09-10')
-//         .then(function (response){
-//             $scope.jsondata = response.data;
-//         });
-// });
-
-myApp.config(function($routeProvider,$httpProvider){
-
+/*var myApp = angular.module('myApp', []);
+myApp.config(function($routeProvider){
     $routeProvider
         .when('/details/:id',{
-            templateUrl: 'showDetails.html',
-            controller: 'detailsCtrl'
-        })
-        .when('/show/2017-09-10',{
-            templateUrl: 'index.html',
-            controller: 'indexCtrl'
-        })
-        .when('/borrow',{
-        templateUrl: 'addBorrow.html',
-        controller: 'borrowCtrl'
+            templateUrl: 'editCarCtrl.html',
+            controller: 'editCarCtrl'
     });
-});
+});*/
+
+/*var myApp = angular.module('myApp', ['ngRoute']);
+myApp.config(['$routeProvider', function ($routeProvider) {
+    $routeProvider
+        .when('/details/:id', {
+            templateUrl: 'editCarCtrl.html',
+            controller: 'editCarCtrl'
+        });
+}]);*/
 
 

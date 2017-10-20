@@ -15,7 +15,6 @@ date.yyyymmdd();
 var currentdate = date.yyyymmdd();
 
 myApp.controller('indexCtrl', function($scope, $http, $rootScope, $window){
-    // $scope.id = {};
 
     $http.get('http://localhost:8080/show/'+currentdate)
         .then(function (response){
@@ -32,11 +31,17 @@ myApp.controller('indexCtrl', function($scope, $http, $rootScope, $window){
     $scope.setId = function(id) {
         $scope.id = id;
         console.log($scope.id);
-        $http.get('http://localhost:8080/show/'+$scope.kalendarz)
-            .then(function (response){
+        if ($scope.kalendarz == null) {
+        $http.get('http://localhost:8080/show/' + currentdate)
+            .then(function (response) {
                 $scope.jsondata = response.data;
             });
-
+        }else if($scope.kalendarz != null){
+            $http.get('http://localhost:8080/show/' + $scope.kalendarz)
+                .then(function (response) {
+                    $scope.jsondata = response.data;
+                });
+        }
     };
 
     $scope.redirectDetails = function() {
@@ -47,10 +52,17 @@ myApp.controller('indexCtrl', function($scope, $http, $rootScope, $window){
     $scope.redirectDelete = function() {
         console.log($scope.id);
         $http.delete("/delete/"+$scope.id);
-        $http.get('http://localhost:8080/show/'+$scope.kalendarz)
-            .then(function (response){
-                $scope.jsondata = response.data;
-            });
+        if ($scope.kalendarz == null) {
+            $http.get('http://localhost:8080/show/' + currentdate)
+                .then(function (response) {
+                    $scope.jsondata = response.data;
+                });
+        }else if($scope.kalendarz != null){
+            $http.get('http://localhost:8080/show/' + $scope.kalendarz)
+                .then(function (response) {
+                    $scope.jsondata = response.data;
+                });
+        }
     };
 
     $scope.redirectEdit = function() {

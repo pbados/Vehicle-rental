@@ -1,44 +1,52 @@
 <html>
 <head>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
-    <script type="text/javascript" src="carCtrl.js"></script>
+    <script type="text/javascript" src="vehicleaddCtrl.js"></script>
     <link rel="stylesheet" href="styles.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 </head>
 <body>
 <h2><center>Dodaj nowy pojazd</center></h2>
-<form name="add" ng-app="myApp" ng-controller="carCtrl">
-<table>
+<form name="add" ng-app="myApp" ng-controller="vehicleaddCtrl">
+<table class="table table-striped table-hover">
+    <tr>
+        <td>Rodzaj pojazdu</td>
+        <td><select ng-model="types">
+            <option value="" required>Wybierz rodzaj</option>
+            <option value={{types}} ng-repeat="types in vehicletype">{{types}}</option>
+        </select></td>
+    </tr>
     <tr>
         <td>Nazwa pojazdu</td>
         <td><input type="text" ng-model="vehicleName" required></td>
     </tr>
     <tr>
         <td>Producent</td>
-        <!--<td><input type="text" ng-model="producerId"></td>-->
-        <td><select ng-model="producerId" required>
+        <td><select ng-model="producerId" required data-ng-disabled="types === 'Bike'">
             <option value="">Wybierz producenta</option>
             <option value={{data.producerId}} ng-repeat="data in producers">{{data.producerName}}</option>
         </select></td>
     </tr>
     <tr>
         <td>Kolor</td>
-        <td><select ng-model="color" required>
+        <td><select ng-model="color" required required data-ng-disabled="types === 'Bike'">
             <option value="">Wybierz kolor</option>
             <option value={{color}} ng-repeat="color in colors">{{color}}</option>
         </select></td>
     </tr>
     <tr>
         <td>Data produkcji</td>
-        <td><input type="text" ng-model="productionDate" required></td>
+        <td><input type="text" ng-model="productionDate" required required data-ng-disabled="types === 'Bike'"></td>
     </tr>
 </table>
-<button type="submit" ng-click="insertcar()" ng-disabled="add.$invalid">Dodaj samochod</button>
+<button type="submit" ng-click="insertcar()" data-ng-disabled="types === 'Bike'" value="Reset" class="btn btn-primary">Dodaj samochod</button>
+<button type="submit" ng-click="insertbike()" data-ng-disabled="types === 'Car'" class="btn btn-primary">Dodaj rower</button>
 </form>
 
 
 </form>
 <form action="/index.html">
-    <input type="submit" value="Powrot" />
+    <input type="submit" value="Powrot" class="btn btn-primary"/>
 </form>
 </body>
 </html>
